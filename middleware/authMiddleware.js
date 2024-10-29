@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const authMiddleware = (req, res, next) => {
   // Get token from header
 
-  console.log("haha");
+  
   const token = req.header('Authorization');
 
   // Check if no token
@@ -16,7 +16,6 @@ const authMiddleware = (req, res, next) => {
     const bearerToken = token.split(' ')[1]; // Get token from "Bearer token"
     const decoded = jwt.verify(bearerToken, process.env.JWT_SECRET);
 
-    console.log(decoded.userId);
     // Attach user to request
     req.user = decoded.userId;
 

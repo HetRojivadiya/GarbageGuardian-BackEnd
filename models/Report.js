@@ -60,6 +60,9 @@ const ReportSchema = new mongoose.Schema({
 
   description : {
     type : String,
+  },
+  completedDate : {
+    type: Date,
   }
   
 }, { timestamps: true });

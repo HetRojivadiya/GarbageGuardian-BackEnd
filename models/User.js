@@ -23,7 +23,13 @@ const UserSchema = new mongoose.Schema({
     type: String,
     enum: ['Verified', 'Pending'],
     default: 'Pending'
-  }
+  }, 
+  averageRating: {
+    type: Number,
+    default: 0,
+  },
+  totalRatings: { type: Number, default: 0 }, // New field to track total rating points
+  ratingCount: { type: Number, default: 0 },
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', UserSchema);

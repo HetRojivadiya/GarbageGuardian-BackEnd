@@ -15,7 +15,7 @@ const AcceptedReportSchema = new mongoose.Schema({
     type: String,
     enum: ['accepted', 'completed'],
     default: 'accepted'
-  }
+  },
 }, { timestamps: true });
 
 module.exports = mongoose.model('AcceptedReport', AcceptedReportSchema);
