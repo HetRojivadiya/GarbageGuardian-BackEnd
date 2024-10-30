@@ -30,4 +30,12 @@ router.route('/getPurchasedProducts').get(authMiddleware, recyclingController.ge
 // Delete a specific recycled product by ID
 router.route('/recycled-products/:id').delete(authMiddleware, recyclingController.DeleteProduct);
 
+
+// Get all purchased products for admin
+router.route('/getAllPurchasedProducts').get(recyclingController.getAllPurchasedProducts);
+
+// Update the status of an order
+router.route('/updateOrderStatus/:id').put(recyclingController.updateOrderStatus);
+
+
 module.exports = router;

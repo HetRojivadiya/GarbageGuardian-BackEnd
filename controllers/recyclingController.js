@@ -193,3 +193,36 @@ exports.getPurchasedProducts = asyncHandler(async (req, res, next) => {
       data: purchasedProducts
   });
 });
+
+
+
+
+// Get all purchased products for admin
+exports.getAllPurchasedProducts = asyncHandler(async (req, res, next) => {
+
+
+  const purchasedProducts = await PurchasedProduct.find().populate('productId'); // populate for product details
+
+  res.status(200).json({
+      success: true,
+      data: purchasedProducts
+  });
+});
+
+// Update the status of an order
+exports.updateOrderStatus = asyncHandler(async (req, res, next) => {
+  const { status } = req.body; // Expecting the new status in the request body
+  const { id } = req.params;
+
+
+  const updatedOrder = await PurchasedProduct.findByIdAndUpdate(id, { status }, { new: true, runValidators: true });
+
+  if (!updatedOrder) {
+      return next(new ErrorResponse("No order found with this ID", 404));
+  }
+
+  res.status(200).json({
+      success: true,
+      data: updatedOrder
+  });
+});
