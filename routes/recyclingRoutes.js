@@ -23,6 +23,10 @@ router.route('/recycled-products/:id').put(
     recyclingController.UpdateProduct
   );
 
+
+// Get all purchased products for a user
+router.route('/getPurchasedProducts').get(authMiddleware, recyclingController.getPurchasedProducts);
+
 // Delete a specific recycled product by ID
 router.route('/recycled-products/:id').delete(authMiddleware, recyclingController.DeleteProduct);
 

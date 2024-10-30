@@ -6,6 +6,8 @@ const authRoutes = require('./routes/authRoutes');
 const reportRoutes = require('./routes/reportRoutes');
 const getOrganizations = require('./routes/organizationRoutes');
 const recyclingRoutes = require('./routes/recyclingRoutes');
+const Payment = require('./controllers/payment');
+
 
 // const recyclingRoutes = require('./routes/recyclingRoutes');
 // const serviceRoutes = require('./routes/serviceRoutes');
@@ -27,6 +29,7 @@ app.use('/auth', authRoutes);
 app.use('/report', reportRoutes);
 app.use('/organizations', getOrganizations);
 app.use('/sellRecyclingProducts', recyclingRoutes);
+app.use('/payment',Payment );
 
 // app.use('/sellRecyclingProducts', recyclingRoutes);
 // app.use('/serviceRequest', serviceRoutes);

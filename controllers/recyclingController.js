@@ -2,6 +2,7 @@ const cloudinary = require('../config/cloudinary');
 const Product = require('../models/Product');
 const asyncHandler = require('../utils/asyncHandler');
 const ErrorResponse = require('../utils/errorResponse');
+const PurchasedProduct = require('../models/PurchasedProduct');
 
 exports.CreateProduct = asyncHandler(async (req, res, next) => {
   const { name, description, price, quantity } = req.body;
@@ -157,3 +158,38 @@ exports.DeleteProduct = async (req, res, next) => {
     }
   };
   
+
+  // Purchase a product
+exports.purchaseProduct = asyncHandler(async (req, res, next) => {
+  const { productId, quantity, totalPrice } = req.body;
+  const userId = req.user; // Get user ID from auth middleware
+
+  if (!productId || !quantity || !totalPrice) {
+      return next(new ErrorResponse("Please provide all required fields", 400));
+  }
+
+  const purchasedProduct = await PurchasedProduct.create({
+      userId,
+      productId,
+      quantity,
+      totalPrice
+  });
+
+  res.status(201).json({
+      success: true,
+      data: purchasedProduct
+  });
+});
+
+// Get all purchased products for a user
+exports.getPurchasedProducts = asyncHandler(async (req, res, next) => {
+  const userId = req.user; // Get user ID from auth middleware
+
+
+  const purchasedProducts = await PurchasedProduct.find({ userId }).populate('productId');
+
+  res.status(200).json({
+      success: true,
+      data: purchasedProducts
+  });
+});
