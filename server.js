@@ -7,10 +7,10 @@ const reportRoutes = require('./routes/reportRoutes');
 const getOrganizations = require('./routes/organizationRoutes');
 const recyclingRoutes = require('./routes/recyclingRoutes');
 const Payment = require('./controllers/payment');
+const emailRoutes = require('./routes/emailRoutes');
 
 
-// const recyclingRoutes = require('./routes/recyclingRoutes');
-// const serviceRoutes = require('./routes/serviceRoutes');
+
 
 
 const app = express();
@@ -30,11 +30,11 @@ app.use('/report', reportRoutes);
 app.use('/organizations', getOrganizations);
 app.use('/sellRecyclingProducts', recyclingRoutes);
 app.use('/payment',Payment );
+app.use('/email', emailRoutes); 
 
-// app.use('/sellRecyclingProducts', recyclingRoutes);
-// app.use('/serviceRequest', serviceRoutes);
+;
 
-// Error handling Middleware (optional)
+// Error handling Middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something broke!');

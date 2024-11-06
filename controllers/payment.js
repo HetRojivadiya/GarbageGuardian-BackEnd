@@ -7,6 +7,7 @@ const router = express.Router();
 const { v4: uuidv4 } = require('uuid');
 const authMiddleware = require('../middleware/authMiddleware');
 const PurchasedProduct = require('../models/PurchasedProduct'); 
+const Product = require('../models/Product');
 
 const MERCHANT_KEY = "96434309-7796-489d-8924-ab56988a6076";
 const MERCHANT_ID = "PGTESTPAYUAT86";
@@ -103,6 +104,13 @@ router.post('/status', async (req, res) => {
         quantity,
         totalPrice: amount
       });
+
+      const product = await Product.findById(productId);
+
+      product.quantity -= quantity;
+      await product.save();
+
+    
 
       return res.redirect(successUrl);
     } else {

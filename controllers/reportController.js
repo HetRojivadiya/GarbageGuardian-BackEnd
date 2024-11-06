@@ -155,6 +155,7 @@ exports.acceptReport = asyncHandler(async (req, res, next) => {
   res.status(200).json({ success: true, message: 'Report accepted successfully' });
 });
 
+//-------------------------------------------------------------------------------------------------
 
 // Fetch accepted reports
 exports.fetchAcceptedReports = asyncHandler(async (req, res, next) => {
@@ -177,6 +178,7 @@ exports.fetchAcceptedReports = asyncHandler(async (req, res, next) => {
   });
 });
 
+//-------------------------------------------------------------------------------------------------------
 
 
 
@@ -231,11 +233,12 @@ exports.completeIssue = asyncHandler(async (req, res, next) => {
   res.status(200).json({ success: true, message: 'Report marked as completed' });
 });
 
+//-----------------------------------------------------------------------------------------//
+
 // Fetch completed reports for the user
 exports.fetchCompletedIssues = asyncHandler(async (req, res, next) => {
   const userId = req.user;
   
-
   // Find reports with status 'completed' where the user is either the issuer or the one who accepted it
   const completedReports = await Report.find({
     $or: [
