@@ -38,4 +38,9 @@ router.route('/getAllPurchasedProducts').get(recyclingController.getAllPurchased
 router.route('/updateOrderStatus/:id').put(recyclingController.updateOrderStatus);
 
 
+// Cancel an order
+router.route('/cancelOrder/:id').put(authMiddleware, recyclingController.cancelOrder);
+
+
+
 module.exports = router;

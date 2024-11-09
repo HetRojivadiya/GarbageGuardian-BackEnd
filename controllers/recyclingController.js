@@ -215,6 +215,14 @@ exports.updateOrderStatus = asyncHandler(async (req, res, next) => {
   const { status } = req.body; // Expecting the new status in the request body
   const { id } = req.params;
 
+  const PurchasedProductDetails = await PurchasedProduct.findById(id);
+
+  if(PurchasedProductDetails.status==='Cancelled')
+  {
+    const product = await Product.findById(PurchasedProductDetails.productId);
+    product.quantity -= PurchasedProductDetails.quantity;
+    await product.save();
+  }
 
   const updatedOrder = await PurchasedProduct.findByIdAndUpdate(id, { status }, { new: true, runValidators: true });
 
@@ -225,5 +233,31 @@ exports.updateOrderStatus = asyncHandler(async (req, res, next) => {
   res.status(200).json({
       success: true,
       data: updatedOrder
+  });
+});
+
+
+// Cancel an order
+exports.cancelOrder = asyncHandler(async (req, res, next) => {
+  const { id } = req.params;
+
+  const cancelledOrder = await PurchasedProduct.findByIdAndUpdate(
+    id,
+    { status: "Cancelled" },
+    { new: true, runValidators: true }
+  );
+
+  if (!cancelledOrder) {
+    return next(new ErrorResponse("No order found with this ID", 404));
+  }
+
+  const product = await Product.findById(cancelledOrder.productId);
+
+  product.quantity += cancelledOrder.quantity;
+  await product.save();
+
+  res.status(200).json({
+    success: true,
+    data: cancelledOrder
   });
 });

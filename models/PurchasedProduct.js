@@ -25,8 +25,14 @@ const PurchasedProductSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['Order Confirmed', 'Order Shipped', 'Order Delivered'],
+        enum: ['Order Confirmed', 'Order Shipped', 'Order Delivered','Cancelled'],
         default: 'Order Confirmed'
+    },address: {
+        street: { type: String, required: true },
+        city: { type: String, required: true },
+        state: { type: String, required: true },
+        postalCode: { type: String, required: true },
+        country: { type: String, required: true }
     }
 });
 
