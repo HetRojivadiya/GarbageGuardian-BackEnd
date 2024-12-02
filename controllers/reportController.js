@@ -6,10 +6,6 @@ const AcceptedReport = require('../models/AcceptedReport');
 const User = require('../models/User'); 
 
 
-
-
-
-
 //------------------------------------------------------------------------------------------//
 
 // Issue a new report

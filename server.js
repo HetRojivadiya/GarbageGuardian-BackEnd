@@ -10,9 +10,6 @@ const Payment = require('./controllers/payment');
 const emailRoutes = require('./routes/emailRoutes');
 
 
-
-
-
 const app = express();
 const port = process.env.PORT || 3001;
 
