@@ -12,9 +12,9 @@ const MERCHANT_KEY = "96434309-7796-489d-8924-ab56988a6076";
 const MERCHANT_ID = "PGTESTPAYUAT86";
 const MERCHANT_BASE_URL = "https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/pay";
 const MERCHANT_STATUS_URL = "https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/status";
-const redirectUrl = "http://localhost:3001/payment/status";
-const successUrl = "http://localhost:3000/#/payment-successful";
-const failureUrl = "http://localhost:3000/#/payment-failed";
+const redirectUrl = "https://garbageguardian-backend.onrender.com/payment/status";
+const successUrl = "https://hetrojivadiya.github.io/GarbageGuardian-FrontEnd/#/payment-successful";
+const failureUrl = "https://hetrojivadiya.github.io/GarbageGuardian-FrontEnd/#/payment-failed";
 
 // Route to create an order
 router.post('/create-order', async (req, res) => {
